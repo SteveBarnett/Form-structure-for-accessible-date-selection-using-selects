@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Form structure for accessible date selection using selects
+    </title>
+
+    <style>
+      body {
+        margin: 1em;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      fieldset:first-of-type select {
+        margin-right: 1em;
+      }
+
+      fieldset:last-of-type select {
+        margin-right: 0.5em;
+      }
+
+      fieldset:last-of-type [name="event-date-year"] {
+        margin-right: 1em;
+      }
+
+      fieldset:last-of-type {
+        border: none;
+        padding: 0;
+      }
+
+      .sr-only {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>
+      Form structure for accessible date selection using select
+    </h1>
+
+    <p>
+      An alternative to <code>type="date"</code> or to using
+      <code>input[type="number"]</code>.
+    </p>
+
+    <p>Notes:</p>
+
+    <ul>
+      <li>
+        The <code>select</code>s are part of a group, so wrap the whole thing in
+        a <code>fieldset</code> to programatically associate them.
+      </li>
+      <li>Add a <code>legend</code> to give the group a name.</li>
+      <li>
+        Give each <code>select</code> a <code>label</code>.
+        <ul>
+          <li>
+            Best choice: a <code>label</code> linked using the
+            <code>id</code> of the <code>select</code> and a <code>for</code> on
+            the <code>label</code>.
+          </li>
+          <li>
+            Second best choice: an <code>aria-label</code> on the
+            <code>select</code>.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Don't set the widths of the <code>select</code>s: let the content
+        dictate it.
+      </li>
+      <li>
+        If required by design, visually hide the <code>legend</code> using the
+        <code>sr-only</code> utility class.
+      </li>
+    </ul>
+
+    <h2>Default version</h2>
+
+    <fieldset>
+      <legend>
+        Event date
+      </legend>
+
+      <label for="event-date-day">Day</label>
+      <select id="event-date-day" name="event-date-day">
+        <option>1</option>
+        <option>2</option>
+        <option>etc</option>
+      </select>
+
+      <label for="event-date-month">Month</label>
+      <select id="event-date-month" name="event-date-month">
+        <option>January</option>
+        <option>February</option>
+        <option>etc</option>
+      </select>
+
+      <label for="event-date-year">Year</label>
+      <select id="event-date-year" name="event-date-year">
+        <option>2020</option>
+        <option>2021</option>
+        <option>etc</option>
+      </select>
+
+      <label for="event-date-timezone">Timezone</label>
+      <select id="event-date-timezone" name="event-date-timezone">
+        <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
+        <option value="12.0"
+          >(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option
+        >
+        <option>etc</option>
+      </select>
+    </fieldset>
+
+    <h2>Design-y version</h2>
+
+    <ul>
+      <li>
+        Hide the <code>legend</code> with the <code>sr-only</code> utility
+        class.
+      </li>
+      <li>Use an <code>aria-label</code> for each field instead of a label.</li>
+      <li>
+        Remove the <code>border</code> and <code>padding</code> from the default
+        <code>fieldset</code> styles.
+      </li>
+    </ul>
+
+    <fieldset>
+      <legend class="sr-only">
+        Event date
+      </legend>
+
+      <select id="event-date-day" name="event-date-day" aria-label="day">
+        <option>1</option>
+        <option>2</option>
+        <option>etc</option>
+      </select>
+
+      <select id="event-date-month" name="event-date-month" aria-label="month">
+        <option>January</option>
+        <option>February</option>
+        <option>etc</option>
+      </select>
+
+      <select id="event-date-year" name="event-date-year" aria-label="year">
+        <option>2020</option>
+        <option>2021</option>
+        <option>etc</option>
+      </select>
+
+      <select
+        id="event-date-timezone"
+        name="event-date-timezone"
+        aria-label="timezone"
+      >
+        <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
+        <option value="12.0"
+          >(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option
+        >
+        <option>etc</option>
+      </select>
+    </fieldset>
+  </body>
+</html>
